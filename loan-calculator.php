@@ -42,7 +42,7 @@
             <div class="loans pb-5">
                 <ul class="nav mt-4 nav-pills mb-4 justify-content-center" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-fha-buyer-tab" data-bs-toggle="pill"
+                        <button class="nav-link active" id="pills-fha-buyer-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-fha-buyer" type="button" role="tab" aria-controls="pills-fha-buyer"
                             aria-selected="true">FHA Buyer</button>
                     </li>
@@ -57,13 +57,13 @@
                             aria-selected="false">VA Buyer</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="pills-usda-buyer-tab" data-bs-toggle="pill"
+                        <button class="nav-link" id="pills-usda-buyer-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-usda-buyer" type="button" role="tab" aria-controls="pills-usda-buyer"
                             aria-selected="false">USDA Buyer</button>
                     </li>
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade" id="pills-fha-buyer" role="tabpanel"
+                    <div class="tab-pane fade show active" id="pills-fha-buyer" role="tabpanel"
                         aria-labelledby="pills-fha-buyer-tab">
                         <?php require './calculators/fha_calculator.html'; ?>
                     </div>
@@ -74,7 +74,7 @@
                     <div class="tab-pane fade" id="pills-va-buyer" role="tabpanel" aria-labelledby="pills-va-buyer-tab">
                         <?php require './calculators/va_calculator.html'; ?>
                     </div>
-                    <div class="tab-pane fade show active" id="pills-usda-buyer" role="tabpanel"
+                    <div class="tab-pane fade" id="pills-usda-buyer" role="tabpanel"
                         aria-labelledby="pills-usda-buyer-tab">
                         <?php require './calculators/usda_calculator.html'; ?>
                     </div>
