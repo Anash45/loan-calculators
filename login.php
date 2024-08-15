@@ -63,7 +63,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8 mx-auto">
                     <div class="login-box bg-white shadow card">
                         <div class="card-body">
-                            <h1 class="fw-bold text-center">TCAD Loan Calculator</h1>
+                            <div class="text-center">
+                                <img src="./assets/images/TCAD_Logo.png" alt="Logo" height="100">
+                            </div>
                             <h2 class="text-center mb-4">Log in</h2>
                             <?php if ($alertMessage): ?>
                                 <div class="alert <?php echo $alertClass; ?> alert-dismissible fade show" role="alert">

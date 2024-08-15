@@ -51,7 +51,7 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false){
             </div>
         </header>
         <main>
-            <h1 class="text-center mt-4 fs-1 fw-bold">Loan Calculators</h1>
+            <h1 class="text-center mt-4 fs-1 fw-bold title">Loan Calculators</h1>
             <div class="loans pb-5">
                 <ul class="nav mt-4 nav-pills mb-4 justify-content-center" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
@@ -75,6 +75,9 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false){
                             aria-selected="false">USDA Buyer</button>
                     </li>
                 </ul>
+                <div class="my-4 text-center">
+                        <button class="btn btn-outline-primary btn-print" onclick="print()"><i class="fa fa-print"></i> Print</button>
+                </div>
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-fha-buyer" role="tabpanel"
                         aria-labelledby="pills-fha-buyer-tab">

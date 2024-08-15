@@ -71,3 +71,16 @@ select.form-control{
     min-width: 130px !important;
     padding: 4px !important;
 }
+
+@media print{
+    *{
+        font-size: 100% !important;
+    }
+    .container{
+        max-width: 100% !important;
+    }
+
+    header,.title,.nav-pills,.btn-print{
+        display: none !important;
+    }
+}
