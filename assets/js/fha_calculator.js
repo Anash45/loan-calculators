@@ -104,8 +104,6 @@ function initFHACalculations() {
         fha_est_dwn_pmt_amnt = fha_est_dwn_pmt_rate * fha_sales_price_inp;
     }
 
-    console.log('Rate Percent ', fha_est_dwn_pmt_amnt, fha_est_dwn_pmt_rate);
-
     let fha_monthly_hoa_fee_inp = parseFloat($('#fha_monthly_hoa_fee_inp').val()) || 0;
     let fha_inspection_inp = parseFloat($('#fha_inspection_inp').val()) || 0;
     let fha_appraisal_inp = parseFloat($('#fha_appraisal_inp').val()) || 0;
@@ -120,6 +118,7 @@ function initFHACalculations() {
     let fha_seller_paid_closing_costs_inp = parseFloat($('#fha_seller_paid_closing_costs_inp').val()) || 0;
     let fha_appraisal_gap_inp = parseFloat($('#fha_appraisal_gap_inp').val()) || 0;
     let fha_start_date_of_loan = $('#fha_start_date_of_loan').val() || '01-01-2025';
+    let fha_est_ttl_pmt_type = $('#fha_est_ttl_pmt_type').val();
 
     // Calculations
     let fha_base_loan_amnt_inp = fha_sales_price_inp - (fha_sales_price_inp * (fha_est_dwn_pmt_rate));
@@ -161,7 +160,15 @@ function initFHACalculations() {
     }
     $('#fha_monthly_mip_inp').val(`${fha_monthly_mip.toFixed(2)}`);
 
-    let fha_est_total_pmt = fha_principle_interest_inp + fha_monthly_ins_inp + fha_monthly_taxes_inp + fha_monthly_mip + fha_monthly_hoa_fee_inp;
+    let fha_est_total_pmt = 0;
+    if (fha_est_ttl_pmt_type == 'Est Ttl Pmt_Escrows') {
+        console.log('Est Ttl Pmt_Escrows');
+        fha_est_total_pmt = fha_principle_interest_inp + fha_monthly_ins_inp + fha_monthly_taxes_inp + fha_monthly_mip + fha_monthly_hoa_fee_inp;
+    } else {
+        console.log('Est Ttl Pmt_No_Escrows');
+        fha_est_total_pmt = fha_principle_interest_inp;
+    }
+
     $('#fha_est_total_pmt').html(`${fha_est_total_pmt.toFixed(2)}`);
 
     let fha_earnest_money = fha_sales_price_inp * 0.01;
@@ -180,9 +187,9 @@ function initFHACalculations() {
 
     let fha_est_closing_costs_inp;
     if (fha_sales_price_inp < 200000) {
-        fha_est_closing_costs_inp = fha_loan_amount * 0.04;
+        fha_est_closing_costs_inp = fha_sales_price_inp * 0.04;
     } else {
-        fha_est_closing_costs_inp = fha_loan_amount * 0.035;
+        fha_est_closing_costs_inp = fha_sales_price_inp * 0.035;
     }
 
     // Display the fha_est_closing_costs_inp
@@ -191,17 +198,45 @@ function initFHACalculations() {
     let fha_buyer_closing_costs_inp = fha_est_closing_costs_inp + fha_seller_paid_closing_costs_inp;
     $('#fha_buyer_closing_costs_inp').val(`${fha_buyer_closing_costs_inp.toFixed(2)}`);
 
-    let fha_agent_compensation_inp = (fha_sales_price_inp === 0) ? 0 : (fha_sales_price_inp * 0.03);
+
+
+    let fha_sbac_amnt = 0;
+    let fha_sbac_rate = 0;
+    if ($('[name="fha_bac_toggle"]:checked').val() == 'amount') {
+        fha_sbac_amnt = fha_est_sbac_inp;
+        fha_sbac_rate = ((fha_sbac_amnt / fha_sales_price_inp) * 100) / 100;
+    } else {
+        fha_sbac_rate = fha_est_sbac_inp / 100;
+        fha_sbac_amnt = fha_sbac_rate * fha_sales_price_inp;
+    }
+
+    let fha_seller_agent_comp_offset_inp = fha_sales_price_inp * fha_sbac_rate;
+    $('#fha_seller_agent_comp_offset_inp').val(`${fha_seller_agent_comp_offset_inp.toFixed(2)}`);
+
+
+
+    
+    let fha_buyer_agent_comp_inp = $('#fha_buyer_agent_comp_inp').val();
+
+    let fha_buyer_agent_comp_amnt = 0;
+    let fha_buyer_agent_comp_rate = 0;
+    if ($('[name="fha_buyer_agent_comp_toggle"]:checked').val() == 'amount') {
+        fha_buyer_agent_comp_amnt = fha_buyer_agent_comp_inp;
+        fha_buyer_agent_comp_rate = ((fha_buyer_agent_comp_amnt / fha_sales_price_inp) * 100) / 100;
+    } else {
+        fha_buyer_agent_comp_rate = fha_buyer_agent_comp_inp / 100;
+        fha_buyer_agent_comp_amnt = fha_buyer_agent_comp_rate * fha_sales_price_inp;
+    }
+
+
+    let fha_agent_compensation_inp = (fha_sales_price_inp === 0) ? 0 : (fha_sales_price_inp * fha_buyer_agent_comp_rate);
     // Display the fha_agent_compensation_inp
     $('#fha_agent_compensation_inp').val(`${fha_agent_compensation_inp.toFixed(2)}`);
-
-    let fha_seller_agent_comp_offset_inp = fha_sales_price_inp * fha_est_sbac_inp / 100;
-    $('#fha_seller_agent_comp_offset_inp').val(`${fha_seller_agent_comp_offset_inp.toFixed(2)}`);
 
     let fha_buyer_agent_comp_due_inp = fha_agent_compensation_inp - fha_seller_agent_comp_offset_inp;
     $('#fha_buyer_agent_comp_due_inp').val(`${fha_buyer_agent_comp_due_inp.toFixed(2)}`);
 
-    let fha_est_buyer_at_table_inp = fha_buyer_dwn_pmt_cost_inp + fha_buyer_closing_costs_inp;
+    let fha_est_buyer_at_table_inp = fha_buyer_dwn_pmt_cost_inp + fha_buyer_agent_comp_due_inp + fha_buyer_closing_costs_inp + fha_appraisal_gap_inp;
     $('#fha_est_buyer_at_table_inp').val(`${fha_est_buyer_at_table_inp.toFixed(2)}`);
 
     let fha_total_costs_w_gap_inp = fha_est_buyer_at_table_inp + fha_appraisal_gap_inp;

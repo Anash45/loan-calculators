@@ -1,0 +1,27 @@
+Needed Corrections
+For all scenarios
+• “Upfront Cost” Section Sized the Option Money field to match the rest of the fields - DONE
+• “Terms” section: size all fields to match width - DONE
+• Add “EST” in front of all titles in black. For example, “EST FHA Loan”, “EST Monthly PMT” - DONE
+• Remove “EST” from all other fields - DONE
+• Add “$” to Principle & Interest , Sales price, Dwn Pmt Amount and Option Money fields - DONE
+• The original excel sheet had a toggle to show “Pmt_No_Escrows/Est Ttl Pmt_escrows” (field C7 on FHA and Conv buyer tabs and C6 on VA and USDA buyer tab. Need this added) - DONE
+• Need to add a field called “Buyer Agent Comp” to sit above “Enter Seller BAC”
+• Change the name of “Enter Seller BAC” to “Seller BAC Offset”
+• As you did with Down Payment, both “Buyer Agent Comp” and “Seller BAC Offset” need to have a percentage and dollar amount option - DONE
+• Either choice above will show in the current fields “Agent Compensation” and “Seller Agent Comp Offset” - DONE
+• “Buyer $$ @ Table” needs to be changed to “Buyer $$ needed at closing”
+• Buyer $$ Needed at closing should be the move down to sit above “Reserves Cash on Hand”
+• Total Costs w/Gap can be removed. As such Buyer $$ Needed at closing will sit right above “Reserves Cash on Hand”
+FHA Buyer
+• “Closing costs/Prepaid” section “Seller Paid Closing Costs if Any” is adding to “Est Closing Costs/Prepaids” instead of subtracting.
+• For example, if $10,000 is entered into Est Closing Costs/PrePaids and $2000 is entered into “Seller Paid Closing Costs if Any”, Buyer closing costs would show $12,000
+Conv Buyer
+• “Closing costs/Prepaid” section “Seller Paid Closing Costs if Any” is adding to “Est Closing Costs/Prepaids” instead of subtracting.
+• For example, if $10,000 is entered into Est Closing Costs/PrePaids and $2000 is entered into “Seller Paid Closing Costs if Any”, Buyer closing costs would show $12,000
+VA Buyer
+• Need a field to enter the VA Funding Fee. (Currently $6000) This is currently built into the formula within cell B4
+• There needs to be a toggle where “Disabled Vet” or “Not disabled Vet” can be selected. The default should be “Not Disabled Vet”
+• If there is a funding fee, that amount will need to be added to the loan amount
+USDA Buyer
+• Need a field to enter the USDA funding fee percent (currently 1%) this is built into field B5. This fee can change

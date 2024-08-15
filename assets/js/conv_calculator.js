@@ -209,17 +209,44 @@ function initConvCalculations() {
     let conv_buyer_closing_costs_inp = conv_est_closing_costs_inp + conv_seller_paid_closing_costs_inp;
     $('#conv_buyer_closing_costs_inp').val(`${conv_buyer_closing_costs_inp.toFixed(2)}`);
 
-    let conv_agent_compensation_inp = (conv_sales_price_inp === 0) ? 0 : (conv_sales_price_inp * 0.03);
+    let conv_sbac_amnt = 0;
+    let conv_sbac_rate = 0;
+    if ($('[name="conv_bac_toggle"]:checked').val() == 'amount') {
+        conv_sbac_amnt = conv_est_sbac_inp;
+        conv_sbac_rate = ((conv_sbac_amnt / conv_sales_price_inp) * 100) / 100;
+    } else {
+        conv_sbac_rate = conv_est_sbac_inp / 100;
+        conv_sbac_amnt = conv_sbac_rate * conv_sales_price_inp;
+    }
+
+    let conv_seller_agent_comp_offset_inp = conv_sales_price_inp * conv_sbac_rate;
+    $('#conv_seller_agent_comp_offset_inp').val(`${conv_seller_agent_comp_offset_inp.toFixed(2)}`);
+
+
+
+    
+    let conv_buyer_agent_comp_inp = $('#conv_buyer_agent_comp_inp').val();
+
+    let conv_buyer_agent_comp_amnt = 0;
+    let conv_buyer_agent_comp_rate = 0;
+    if ($('[name="conv_buyer_agent_comp_toggle"]:checked').val() == 'amount') {
+        conv_buyer_agent_comp_amnt = conv_buyer_agent_comp_inp;
+        conv_buyer_agent_comp_rate = ((conv_buyer_agent_comp_amnt / conv_sales_price_inp) * 100) / 100;
+    } else {
+        conv_buyer_agent_comp_rate = conv_buyer_agent_comp_inp / 100;
+        conv_buyer_agent_comp_amnt = conv_buyer_agent_comp_rate * conv_sales_price_inp;
+    }
+
+
+    let conv_agent_compensation_inp = (conv_sales_price_inp === 0) ? 0 : (conv_sales_price_inp * conv_buyer_agent_comp_rate);
     // Display the conv_agent_compensation_inp
     $('#conv_agent_compensation_inp').val(`${conv_agent_compensation_inp.toFixed(2)}`);
 
-    let conv_seller_agent_comp_offset_inp = conv_sales_price_inp * conv_est_sbac_inp / 100;
-    $('#conv_seller_agent_comp_offset_inp').val(`${conv_seller_agent_comp_offset_inp.toFixed(2)}`);
 
     let conv_buyer_agent_comp_due_inp = conv_agent_compensation_inp - conv_seller_agent_comp_offset_inp;
     $('#conv_buyer_agent_comp_due_inp').val(`${conv_buyer_agent_comp_due_inp.toFixed(2)}`);
 
-    let conv_est_buyer_at_table_inp = conv_buyer_dwn_pmt_cost_inp + conv_buyer_closing_costs_inp;
+    let conv_est_buyer_at_table_inp = conv_buyer_dwn_pmt_cost_inp + conv_buyer_closing_costs_inp + conv_buyer_agent_comp_due_inp + conv_appraisal_gap_inp;
     $('#conv_est_buyer_at_table_inp').val(`${conv_est_buyer_at_table_inp.toFixed(2)}`);
 
     let conv_total_costs_w_gap_inp = conv_est_buyer_at_table_inp + conv_appraisal_gap_inp;

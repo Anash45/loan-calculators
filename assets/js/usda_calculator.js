@@ -178,7 +178,7 @@ function initUsdaCalculations() {
     if (usda_est_ttl_pmt_type == 'Est Ttl Pmt_Escrows') {
         usda_est_total_pmt = usda_principle_interest_inp + usda_monthly_ins_inp + usda_monthly_taxes_inp + usda_monthly_fee_inp + usda_monthly_tc_fee_inp;
     } else {
-        usda_est_total_pmt = usda_principle_interest_inp;
+        usda_est_total_pmt = usda_principle_interest_inp + usda_monthly_fee_inp;
     }
     $('#usda_est_total_pmt').html(`${usda_est_total_pmt.toFixed(2)}`);
 
@@ -209,23 +209,44 @@ function initUsdaCalculations() {
     let usda_buyer_closing_costs_inp = usda_est_closing_costs_inp - usda_seller_paid_closing_costs_inp;
     $('#usda_buyer_closing_costs_inp').val(`${usda_buyer_closing_costs_inp.toFixed(2)}`);
 
-    let usda_agent_compensation_inp = (usda_sales_price_inp === 0) ? 0 : (usda_sales_price_inp * 0.03);
+
+    let usda_sbac_amnt = 0;
+    let usda_sbac_rate = 0;
+    if ($('[name="usda_bac_toggle"]:checked').val() == 'amount') {
+        usda_sbac_amnt = usda_est_sbac_inp;
+        usda_sbac_rate = ((usda_sbac_amnt / usda_sales_price_inp) * 100) / 100;
+    } else {
+        usda_sbac_rate = usda_est_sbac_inp / 100;
+        usda_sbac_amnt = usda_sbac_rate * usda_sales_price_inp;
+    }
+
+    let usda_seller_agent_comp_offset_inp = usda_sales_price_inp * usda_sbac_rate;
+    $('#usda_seller_agent_comp_offset_inp').val(`${usda_seller_agent_comp_offset_inp.toFixed(2)}`);
+
+
+    let usda_buyer_agent_comp_inp = $('#usda_buyer_agent_comp_inp').val();
+
+    let usda_buyer_agent_comp_amnt = 0;
+    let usda_buyer_agent_comp_rate = 0;
+    if ($('[name="usda_buyer_agent_comp_toggle"]:checked').val() == 'amount') {
+        usda_buyer_agent_comp_amnt = usda_buyer_agent_comp_inp;
+        usda_buyer_agent_comp_rate = ((usda_buyer_agent_comp_amnt / usda_sales_price_inp) * 100) / 100;
+    } else {
+        usda_buyer_agent_comp_rate = usda_buyer_agent_comp_inp / 100;
+        usda_buyer_agent_comp_amnt = usda_buyer_agent_comp_rate * usda_sales_price_inp;
+    }
+
+
+    let usda_agent_compensation_inp = (usda_sales_price_inp === 0) ? 0 : (usda_sales_price_inp * usda_buyer_agent_comp_rate);
     // Display the usda_agent_compensation_inp
     $('#usda_agent_compensation_inp').val(`${usda_agent_compensation_inp.toFixed(2)}`);
-
-    let usda_seller_agent_comp_offset_inp = usda_sales_price_inp * usda_est_sbac_inp / 100;
-    $('#usda_seller_agent_comp_offset_inp').val(`${usda_seller_agent_comp_offset_inp.toFixed(2)}`);
 
     let usda_buyer_agent_comp_due_inp = usda_agent_compensation_inp - usda_seller_agent_comp_offset_inp;
     $('#usda_buyer_agent_comp_due_inp').val(`${usda_buyer_agent_comp_due_inp.toFixed(2)}`);
 
 
     let usda_est_buyer_at_table_inp = 0;
-    if (usda_down_pmt_inp == 0) {
-        usda_est_buyer_at_table_inp = usda_buyer_dwn_pmt_cost_inp + usda_buyer_closing_costs_inp;
-    } else {
-        usda_est_buyer_at_table_inp = 0;
-    }
+    usda_est_buyer_at_table_inp = usda_buyer_dwn_pmt_cost_inp + usda_buyer_closing_costs_inp + usda_appraisal_gap_inp + usda_buyer_agent_comp_due_inp;
     $('#usda_est_buyer_at_table_inp').val(`${usda_est_buyer_at_table_inp.toFixed(2)}`);
 
     let usda_total_costs_w_gap_inp = usda_est_buyer_at_table_inp + usda_appraisal_gap_inp;

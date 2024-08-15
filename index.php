@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false){
+    header("Location: ./login.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,13 +16,13 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
             integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="./assets/css/style.css">
+        <link rel="stylesheet" href="./assets/css/style.css?v=1">
     </head>
 
     <body>
         <header class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="./index.html">
+                <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="./index.php">
                     <img src="./assets/images/TCAD_Logo.png" alt="Logo" width="45" height="45"
                         class="d-inline-block align-text-top"> TCAD BUYER ESTIMATED NET SHEET </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -24,11 +31,17 @@
                 </button>
                 <nav class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
+                        <?php
+                        if (isset($_SESSION['superadmin']) && $_SESSION['superadmin'] == true) {
+                            ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./admin_management.php">Dashboard</a>
+                            </li>
+                            <?php
+                        }
+                        ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="./index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="./loan-calculator.html">Loan Calculator</a>
+                            <a class="nav-link active" href="./index.php">Loan Calculator</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./logout.php">Logout</a>
@@ -38,7 +51,7 @@
             </div>
         </header>
         <main>
-            <h1 class="text-center mt-4">Loan Calculators</h1>
+            <h1 class="text-center mt-4 fs-1 fw-bold">Loan Calculators</h1>
             <div class="loans pb-5">
                 <ul class="nav mt-4 nav-pills mb-4 justify-content-center" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
@@ -81,13 +94,13 @@
                 </div>
             </div>
         </main>
-        <script src="./assets/js/jquery-3.6.1.min.js"></script>
+        <script src="./assets/js/jquery.min.js"></script>
         <script src="./assets/js/bootstrap.bundle.min.js"></script>
-        <script src="./assets/js/fha_calculator.js"></script>
-        <script src="./assets/js/conv_calculator.js"></script>
-        <script src="./assets/js/va_calculator.js"></script>
-        <script src="./assets/js/usda_calculator.js"></script>
-        <script src="./assets/js/script.js"></script>
+        <script src="./assets/js/fha_calculator.js?v=1"></script>
+        <script src="./assets/js/conv_calculator.js?v=1"></script>
+        <script src="./assets/js/va_calculator.js?v=1"></script>
+        <script src="./assets/js/usda_calculator.js?v=1"></script>
+        <script src="./assets/js/script.js?v=1"></script>
     </body>
 
 </html>

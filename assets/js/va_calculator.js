@@ -121,8 +121,8 @@ function initVACalculations() {
     let va_funding_fee_type_inp = $('#va_funding_fee_type_inp').val();
     let va_funding_fee_inp = 0;
 
-    if (va_funding_fee_type_inp == 'VA Funding Fee?') {
-        va_funding_fee_inp = 0;
+    if (va_funding_fee_type_inp == 'Not Disabled') {
+        va_funding_fee_inp = 6000;
     } else {
         va_funding_fee_inp = 0;
     }
@@ -130,7 +130,7 @@ function initVACalculations() {
     $('#va_funding_fee_inp').val(va_funding_fee_inp);
 
     // Calculations
-    let va_base_loan_amnt_inp = va_sales_price_inp - (va_sales_price_inp * (va_est_dwn_pmt_rate));
+    let va_base_loan_amnt_inp = va_sales_price_inp - (va_sales_price_inp * (va_est_dwn_pmt_rate)) + va_funding_fee_inp;
     $('#va_base_loan_amnt_inp').val(va_base_loan_amnt_inp > 0 ? va_base_loan_amnt_inp.toFixed(2) : '');
 
     // $('#va_funding_fee_inp').val(va_funding_fee_inp > 0 ? va_funding_fee_inp.toFixed(2) : 0);
@@ -143,6 +143,7 @@ function initVACalculations() {
 
     let va_loan_amount = va_sales_price_inp - (va_est_dwn_pmt_rate * va_sales_price_inp) + va_funding_fee_inp;
     $('#va_loan_amount').val(va_loan_amount.toFixed(2));
+    let va_est_ttl_pmt_type = $('#va_est_ttl_pmt_type').val();
 
 
     $('#va_annual_interest_rate').val(va_mortgage_rate_inp.toFixed(2));
@@ -168,7 +169,14 @@ function initVACalculations() {
     }
     $('#va_monthly_mip_inp').val(`${va_monthly_mip.toFixed(2)}`);
 
-    let va_est_total_pmt = va_principle_interest_inp + va_monthly_ins_inp + va_monthly_taxes_inp + va_monthly_mip + va_monthly_hoa_fee_inp;
+    let va_est_total_pmt = 0;
+    if (va_est_ttl_pmt_type == 'Est Ttl Pmt_Escrows') {
+        va_est_total_pmt = va_principle_interest_inp + va_monthly_ins_inp + va_monthly_taxes_inp + va_monthly_mip + va_monthly_hoa_fee_inp;
+    } else {
+        va_est_total_pmt = va_principle_interest_inp;
+    }
+
+
     $('#va_est_total_pmt').html(`${va_est_total_pmt.toFixed(2)}`);
 
     let va_earnest_money = va_sales_price_inp * 0.01;
@@ -182,7 +190,7 @@ function initVACalculations() {
 
     $('#va_earnest_money').val(`${va_earnest_money.toFixed(2)}`);
 
-    let va_buyer_dwn_pmt_cost_inp = va_down_pmt_inp + va_earnest_money;
+    let va_buyer_dwn_pmt_cost_inp = va_down_pmt_inp - va_earnest_money;
     $('#va_buyer_dwn_pmt_cost_inp').val(`${va_buyer_dwn_pmt_cost_inp.toFixed(2)}`);
 
     let va_est_closing_costs_inp;
@@ -198,17 +206,45 @@ function initVACalculations() {
     let va_buyer_closing_costs_inp = va_est_closing_costs_inp - va_seller_paid_closing_costs_inp;
     $('#va_buyer_closing_costs_inp').val(`${va_buyer_closing_costs_inp.toFixed(2)}`);
 
-    let va_agent_compensation_inp = (va_sales_price_inp === 0) ? 0 : (va_sales_price_inp * 0.03);
+
+    let va_sbac_amnt = 0;
+    let va_sbac_rate = 0;
+    if ($('[name="va_bac_toggle"]:checked').val() == 'amount') {
+        va_sbac_amnt = va_est_sbac_inp;
+        va_sbac_rate = ((va_sbac_amnt / va_sales_price_inp) * 100) / 100;
+    } else {
+        va_sbac_rate = va_est_sbac_inp / 100;
+        va_sbac_amnt = va_sbac_rate * va_sales_price_inp;
+    }
+
+    let va_seller_agent_comp_offset_inp = va_sales_price_inp * va_sbac_rate;
+    $('#va_seller_agent_comp_offset_inp').val(`${va_seller_agent_comp_offset_inp.toFixed(2)}`);
+
+
+
+
+    let va_buyer_agent_comp_inp = $('#va_buyer_agent_comp_inp').val();
+
+    let va_buyer_agent_comp_amnt = 0;
+    let va_buyer_agent_comp_rate = 0;
+    if ($('[name="va_buyer_agent_comp_toggle"]:checked').val() == 'amount') {
+        va_buyer_agent_comp_amnt = va_buyer_agent_comp_inp;
+        va_buyer_agent_comp_rate = ((va_buyer_agent_comp_amnt / va_sales_price_inp) * 100) / 100;
+    } else {
+        va_buyer_agent_comp_rate = va_buyer_agent_comp_inp / 100;
+        va_buyer_agent_comp_amnt = va_buyer_agent_comp_rate * va_sales_price_inp;
+    }
+
+    console.log('Rate Amnt ', va_buyer_agent_comp_amnt);
+
+    let va_agent_compensation_inp = (va_sales_price_inp === 0) ? 0 : (va_sales_price_inp * va_buyer_agent_comp_rate);
     // Display the va_agent_compensation_inp
     $('#va_agent_compensation_inp').val(`${va_agent_compensation_inp.toFixed(2)}`);
-
-    let va_seller_agent_comp_offset_inp = va_sales_price_inp * va_est_sbac_inp / 100;
-    $('#va_seller_agent_comp_offset_inp').val(`${va_seller_agent_comp_offset_inp.toFixed(2)}`);
 
     let va_buyer_agent_comp_due_inp = va_agent_compensation_inp - va_seller_agent_comp_offset_inp;
     $('#va_buyer_agent_comp_due_inp').val(`${va_buyer_agent_comp_due_inp.toFixed(2)}`);
 
-    let va_est_buyer_at_table_inp = va_buyer_dwn_pmt_cost_inp + va_buyer_closing_costs_inp;
+    let va_est_buyer_at_table_inp = va_buyer_dwn_pmt_cost_inp + va_buyer_closing_costs_inp + va_buyer_agent_comp_due_inp + va_appraisal_gap_inp;
     $('#va_est_buyer_at_table_inp').val(`${va_est_buyer_at_table_inp.toFixed(2)}`);
 
     let va_total_costs_w_gap_inp = va_est_buyer_at_table_inp + va_appraisal_gap_inp;

@@ -1,24 +1,27 @@
 <div class="container">
-    <form action="./loan-calculator.html" id="usda_form" method="post">
+    <form action="./index.php" id="usda_form" method="post">
         <div class="row">
             <div class="col-lg-6">
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead class="bg-dark text-white text-center">
                             <tr>
-                                <th colspan="3">USDA Loan</th>
-                                <th>Est Monthly PMT</th>
+                                <th colspan="3">Est. USDA Loan</th>
+                                <th>Est. Monthly PMT</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>Sales Price</td>
-                                <td><input type="text"
-                                        class="form-control only-numbers user-inp green-inp form-control-sm"
-                                        id="usda_sales_price_inp" value="10000"></td>
+                                <td>
+                                    <div class="d-flex gap-1 align-items-center input-div"> <span class="dollar-sign">$</span><input type="text"
+                                            class="form-control only-numbers user-inp green-inp form-control-sm"
+                                            id="usda_sales_price_inp" value="10000"></div>
+                                </td>
                                 <td>Principle & interest</td>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center">
+                                    <div class="d-flex gap-1 align-items-center input-div">
+                                        <span class="dollar-sign">$</span>
                                         <input type="text" class="form-control only-numbers form-control-sm"
                                             id="usda_principle_interest_inp">
                                     </div>
@@ -26,7 +29,7 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <div class="d-flex justify-content-center align-items-center">
+                                    <div class="d-flex justify-content-center align-items-center percent-toggle">
                                         <label class="form-check-inline">Dwn Pmt Amount <input type="radio"
                                                 value="amount" name="usda_dwn_pmt_amnt"></label><label
                                             class="form-check-inline">% <input type="radio" value="percentage"
@@ -35,17 +38,17 @@
                                 </td>
                                 <td>Monthly Ins</td>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center">
-                                        <span>$</span>
+                                    <div class="d-flex gap-1 align-items-center input-div">
+                                        <span class="dollar-sign">$</span>
                                         <input type="text" class="form-control only-numbers form-control-sm"
                                             id="usda_monthly_ins_inp">
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Est. Dwn Pmt</td>
+                                <td>Dwn Pmt</td>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center">
+                                    <div class="d-flex gap-1 align-items-center input-div">
                                         <input type="text"
                                             class="form-control only-numbers user-inp green-inp form-control-sm"
                                             id="usda_est_dwn_pmt_inp" value="4.00"><span></span>
@@ -53,8 +56,8 @@
                                 </td>
                                 <td>Monthly Taxes</td>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center">
-                                        <span>$</span>
+                                    <div class="d-flex gap-1 align-items-center input-div">
+                                        <span class="dollar-sign">$</span>
                                         <input type="text" class="form-control only-numbers form-control-sm"
                                             id="usda_monthly_taxes_inp">
                                     </div>
@@ -63,16 +66,16 @@
                             <tr>
                                 <td>USDA Base Loan Amount</td>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center">
-                                        <span>$</span>
+                                    <div class="d-flex gap-1 align-items-center input-div">
+                                        <span class="dollar-sign">$</span>
                                         <input type="text" class="form-control only-numbers form-control-sm"
                                             id="usda_base_loan_amnt_inp">
                                     </div>
                                 </td>
                                 <td>USDA Monthly Fee</td>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center">
-                                        <span>$</span>
+                                    <div class="d-flex gap-1 align-items-center input-div">
+                                        <span class="dollar-sign">$</span>
                                         <input type="text" class="form-control only-numbers form-control-sm"
                                             id="usda_monthly_fee_inp" value="4.00">
                                     </div>
@@ -81,8 +84,8 @@
                             <tr>
                                 <td>USDA Funding Fee</td>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center">
-                                        <span>$</span>
+                                    <div class="d-flex gap-1 align-items-center input-div">
+                                        <span class="dollar-sign">$</span>
                                         <input type="text" class="form-control only-numbers form-control-sm"
                                             id="usda_funding_fee_inp">
                                     </div>
@@ -92,20 +95,20 @@
                             <tr>
                                 <td>USDA Total Loan Amount</td>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center">
-                                        <span>$</span>
+                                    <div class="d-flex gap-1 align-items-center input-div">
+                                        <span class="dollar-sign">$</span>
                                         <input type="text" class="form-control only-numbers form-control-sm"
                                             id="usda_total_loan_amount_inp">
                                     </div>
                                 </td>
                                 <th class="text-danger">
-                                    <select id="usda_est_ttl_pmt_type" class="form-control form-control-sm green-inp text-danger">
+                                    <select id="usda_est_ttl_pmt_type"
+                                        class="form-control form-control-sm green-inp text-danger">
                                         <option value="Est Ttl Pmt_Escrows">Pmt_Escrows</option>
                                         <option value="Est Ttl Pmt_No_Escrows">Pmt_No_Escrows</option>
                                     </select>
                                 </th>
-                                <th class="text-danger bg-light text-center">
-                                    $<span id="usda_est_total_pmt"></span>
+                                <th class="text-danger bg-light text-center"> $<span id="usda_est_total_pmt"></span>
                                 </th>
                             </tr>
                         </tbody>
@@ -117,40 +120,41 @@
                     <table class="table table-bordered">
                         <thead class="bg-dark text-white text-center">
                             <tr>
-                                <th colspan="2">Upfront Costs</th>
-                                <th colspan="2">Terms</th>
+                                <th colspan="2">Est. Upfront Costs</th>
+                                <th colspan="2">Est. Terms</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>Earnest Money</td>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center">
-                                        <span>$</span><input type="text"
-                                            class="form-control only-numbers form-control-sm" id="usda_earnest_money_inp">
+                                    <div class="d-flex gap-1 align-items-center input-div">
+                                        <span class="dollar-sign">$</span><input type="text"
+                                            class="form-control only-numbers form-control-sm"
+                                            id="usda_earnest_money_inp">
                                     </div>
                                 </td>
                                 <td>Mortgage Rate</td>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center">
+                                    <div class="d-flex gap-1 align-items-center input-div">
                                         <input type="text" class="form-control only-numbers green-inp form-control-sm"
                                             id="usda_mortgage_rate_inp" value="6.00">
-                                        <span>%</span>
+                                        <span class="percentage-sign">%</span>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Inspection</td>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center">
-                                        <span>$</span><input type="text"
+                                    <div class="d-flex gap-1 align-items-center input-div">
+                                        <span class="dollar-sign">$</span><input type="text"
                                             class="form-control only-numbers green-inp form-control-sm"
                                             id="usda_inspection_inp" value="450">
                                     </div>
                                 </td>
                                 <td>Mortgage Years</td>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center">
+                                    <div class="d-flex gap-1 align-items-center input-div">
                                         <input type="text" class="form-control only-numbers green-inp form-control-sm"
                                             id="usda_mortgage_years_inp" value="30">
                                     </div>
@@ -159,16 +163,16 @@
                             <tr>
                                 <td>Appraisal</td>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center">
-                                        <span>$</span><input type="text"
+                                    <div class="d-flex gap-1 align-items-center input-div">
+                                        <span class="dollar-sign">$</span><input type="text"
                                             class="form-control only-numbers green-inp form-control-sm"
                                             id="usda_appraisal_inp" value="600">
                                     </div>
                                 </td>
                                 <td>Yearly Ins</td>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center">
-                                        <span>$</span>
+                                    <div class="d-flex gap-1 align-items-center input-div">
+                                        <span class="dollar-sign">$</span>
                                         <input type="text" class="form-control only-numbers green-inp form-control-sm"
                                             id="usda_yearly_ins_inp" value="1500">
                                     </div>
@@ -177,15 +181,16 @@
                             <tr>
                                 <td>Option money</td>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center">
+                                    <div class="d-flex gap-1 align-items-center input-div">
+                                        <span class="dollar-sign">$</span>
                                         <input type="text" class="form-control only-numbers green-inp form-control-sm"
                                             id="usda_option_money_inp">
                                     </div>
                                 </td>
                                 <td>Yearly Taxes</td>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center">
-                                        <span>$</span>
+                                    <div class="d-flex gap-1 align-items-center input-div">
+                                        <span class="dollar-sign">$</span>
                                         <input type="text" class="form-control only-numbers green-inp form-control-sm"
                                             id="usda_yearly_taxes_inp" value="4500">
                                     </div>
@@ -196,12 +201,41 @@
                                 <th class="text-danger bg-light text-center">$<span
                                         id="usda_total_additional_costs"></span>
                                 </th>
-                                <td>Choose Est SBAC</td>
+                                <td colspan="2">
+                                    <div class="d-flex justify-content-center align-items-center percent-toggle">
+                                        <label class="form-check-inline">Amount <input type="radio" value="amount"
+                                                name="usda_buyer_agent_comp_toggle"></label><label class="form-check-inline">% <input
+                                                type="radio" value="percentage" name="usda_buyer_agent_comp_toggle" checked></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>Buyer Agent Comp</td>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center">
+                                    <div class="d-flex gap-1 align-items-center input-div">
+                                        <input type="text" class="form-control only-numbers green-inp form-control-sm"
+                                            id="usda_buyer_agent_comp_inp" value="3.00">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td colspan="2">
+                                    <div class="d-flex justify-content-center align-items-center percent-toggle">
+                                        <label class="form-check-inline">Amount <input type="radio" value="amount"
+                                                name="usda_bac_toggle"></label><label class="form-check-inline">% <input
+                                                type="radio" value="percentage" name="usda_bac_toggle" checked></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>Seller BAC Offset</td>
+                                <td>
+                                    <div class="d-flex gap-1 align-items-center input-div">
                                         <input type="text" class="form-control only-numbers green-inp form-control-sm"
                                             id="usda_est_sbac_inp" value="3.00">
-                                        <span>%</span>
                                     </div>
                                 </td>
                             </tr>
@@ -211,7 +245,7 @@
             </div>
             <div class="col-12 py-3">
                 <div class="p-2 rounded bg-dark text-white text-center">
-                    <h4 class="fw-bold mb-0">Costs @ Closing</h4>
+                    <h4 class="fw-bold mb-0 fs-5">Est. Costs @ Closing</h4>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -219,15 +253,15 @@
                     <table class="table table-bordered">
                         <thead class="bg-secondary text-white">
                             <tr>
-                                <th colspan="2">Down Payment</th>
+                                <th colspan="2">Est. Down Payment</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>Down Payment</td>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center">
-                                        <span>$</span>
+                                    <div class="d-flex gap-1 align-items-center input-div">
+                                        <span class="dollar-sign">$</span>
                                         <input type="text" class="form-control only-numbers user-inp form-control-sm"
                                             id="usda_down_pmt_inp" readonly>
                                     </div>
@@ -236,8 +270,8 @@
                             <tr>
                                 <td>Earnest Money</td>
                                 <td>
-                                    <div class="d-flex gap-1 text-danger align-items-center">
-                                        <span>$</span>
+                                    <div class="d-flex gap-1 text-danger align-items-center input-div">
+                                        <span class="dollar-sign">$</span>
                                         <input type="text"
                                             class="form-control text-danger only-numbers user-inp form-control-sm"
                                             id="usda_earnest_money" readonly>
@@ -247,8 +281,8 @@
                             <tr>
                                 <th>Buyer DwnPMT Cost</th>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center">
-                                        <span>$</span>
+                                    <div class="d-flex gap-1 align-items-center input-div">
+                                        <span class="dollar-sign">$</span>
                                         <input type="text" class="form-control only-numbers user-inp form-control-sm"
                                             id="usda_buyer_dwn_pmt_cost_inp" readonly>
                                     </div>
@@ -261,8 +295,8 @@
                             <tr>
                                 <td>Agent Compensation</td>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center">
-                                        <span>$</span>
+                                    <div class="d-flex gap-1 align-items-center input-div">
+                                        <span class="dollar-sign">$</span>
                                         <input type="text" class="form-control only-numbers user-inp form-control-sm"
                                             id="usda_agent_compensation_inp" readonly>
                                     </div>
@@ -271,9 +305,10 @@
                             <tr>
                                 <td>Seller Agent Comp Offset</td>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center">
-                                        <span>$</span>
-                                        <input type="text" class="form-control only-numbers text-danger user-inp form-control-sm"
+                                    <div class="d-flex gap-1 align-items-center input-div">
+                                        <span class="dollar-sign">$</span>
+                                        <input type="text"
+                                            class="form-control only-numbers text-danger user-inp form-control-sm"
                                             id="usda_seller_agent_comp_offset_inp" value="" readonly>
                                     </div>
                                 </td>
@@ -281,8 +316,8 @@
                             <tr>
                                 <th>Buyer Agent Comp Due</th>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center">
-                                        <span>$</span>
+                                    <div class="d-flex gap-1 align-items-center input-div">
+                                        <span class="dollar-sign">$</span>
                                         <input type="text" class="form-control only-numbers user-inp form-control-sm"
                                             id="usda_buyer_agent_comp_due_inp" readonly>
                                     </div>
@@ -297,15 +332,15 @@
                     <table class="table table-bordered">
                         <thead class="bg-secondary text-white">
                             <tr>
-                                <th colspan="2">Closing Costs/Prepaids</th>
+                                <th colspan="2">Est. Closing Costs/Prepaids</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Est Closing Costs/Prepaids</td>
+                                <td>Closing Costs/Prepaids</td>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center">
-                                        <span>$</span>
+                                    <div class="d-flex gap-1 align-items-center input-div">
+                                        <span class="dollar-sign">$</span>
                                         <input type="text" class="form-control only-numbers form-control-sm"
                                             id="usda_est_closing_costs_inp" readonly>
                                     </div>
@@ -314,8 +349,8 @@
                             <tr>
                                 <td>Seller Paid Closing Costs If Any</td>
                                 <td>
-                                    <div class="d-flex gap-1 text-danger align-items-center">
-                                        <span>$</span>
+                                    <div class="d-flex gap-1 text-danger align-items-center input-div">
+                                        <span class="dollar-sign">$</span>
                                         <input type="text"
                                             class="form-control text-danger only-numbers text-danger user-inp green-inp form-control-sm"
                                             id="usda_seller_paid_closing_costs_inp" value="100">
@@ -325,8 +360,8 @@
                             <tr>
                                 <th>Buyer Closing Costs</th>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center">
-                                        <span>$</span>
+                                    <div class="d-flex gap-1 align-items-center input-div">
+                                        <span class="dollar-sign">$</span>
                                         <input type="text" class="form-control only-numbers user-inp form-control-sm"
                                             id="usda_buyer_closing_costs_inp" readonly>
                                     </div>
@@ -337,20 +372,10 @@
                                 <td class="py-3"></td>
                             </tr>
                             <tr>
-                                <th>Buyer $$ @ Table</th>
-                                <td>
-                                    <div class="d-flex gap-1 align-items-center">
-                                        <span>$</span>
-                                        <input type="text" class="form-control only-numbers user-inp form-control-sm"
-                                            id="usda_est_buyer_at_table_inp" readonly>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
                                 <td>Appraisal Gap</td>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center">
-                                        <span>$</span>
+                                    <div class="d-flex gap-1 align-items-center input-div">
+                                        <span class="dollar-sign">$</span>
                                         <input type="text"
                                             class="form-control only-numbers user-inp green-inp form-control-sm"
                                             id="usda_appraisal_gap_inp" value="0">
@@ -358,10 +383,20 @@
                                 </td>
                             </tr>
                             <tr>
+                                <th>Buyer $$ needed at closing</th>
+                                <td>
+                                    <div class="d-flex gap-1 align-items-center input-div">
+                                        <span class="dollar-sign">$</span>
+                                        <input type="text" class="form-control only-numbers user-inp form-control-sm"
+                                            id="usda_est_buyer_at_table_inp" readonly>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="d-none">
                                 <th>Total Costs w/Gap</th>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center">
-                                        <span>$</span>
+                                    <div class="d-flex gap-1 align-items-center input-div">
+                                        <span class="dollar-sign">$</span>
                                         <input type="text" class="form-control only-numbers user-inp form-control-sm"
                                             id="usda_total_costs_w_gap_inp" readonly>
                                     </div>
@@ -370,8 +405,8 @@
                             <tr>
                                 <th>Reserves Cash on Hand</th>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center justify-content-center">
-                                        <span>$</span>
+                                    <div class="d-flex gap-1 align-items-center input-div justify-content-center">
+                                        <span class="dollar-sign">$</span>
                                         <span id="usda_reserves_cash_on_hand"></span>
                                     </div>
                                 </td>
@@ -395,8 +430,8 @@
                                     <tr>
                                         <td class="text-end">Loan Amount</td>
                                         <td>
-                                            <div class="d-flex gap-1 align-items-center">
-                                                <span>$</span>
+                                            <div class="d-flex gap-1 align-items-center input-div">
+                                                <span class="dollar-sign">$</span>
                                                 <input type="text"
                                                     class="form-control only-numbers user-inp form-control-sm"
                                                     id="usda_loan_amount" readonly>
@@ -406,18 +441,18 @@
                                     <tr>
                                         <td class="text-end">Annual Interest Rate</td>
                                         <td>
-                                            <div class="d-flex gap-1 align-items-center">
+                                            <div class="d-flex gap-1 align-items-center input-div">
                                                 <input type="text"
                                                     class="form-control only-numbers user-inp form-control-sm"
                                                     id="usda_annual_interest_rate">
-                                                <span>%</span>
+                                                <span class="percentage-sign">%</span>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="text-end">Loan Period in Years</td>
                                         <td>
-                                            <div class="d-flex gap-1 align-items-center">
+                                            <div class="d-flex gap-1 align-items-center input-div">
                                                 <input type="text"
                                                     class="form-control only-numbers user-inp form-control-sm"
                                                     id="usda_loan_period_in_years" readonly>
@@ -427,7 +462,7 @@
                                     <tr>
                                         <td class="text-end">Number of Payments Per Year</td>
                                         <td>
-                                            <div class="d-flex gap-1 align-items-center">
+                                            <div class="d-flex gap-1 align-items-center input-div">
                                                 <input type="text"
                                                     class="form-control only-numbers user-inp form-control-sm"
                                                     id="usda_number_of_pmt_per_year_inp" value="12">
@@ -437,7 +472,7 @@
                                     <tr>
                                         <td class="text-end">Start Date of Loan</td>
                                         <td>
-                                            <div class="d-flex gap-1 align-items-center">
+                                            <div class="d-flex gap-1 align-items-center input-div">
                                                 <input type="date" class="form-control user-inp form-control-sm"
                                                     id="usda_start_date_of_loan" value="2015-11-01">
                                             </div>
@@ -446,10 +481,10 @@
                                     <tr>
                                         <td class="text-end">Optional Extra Payments</td>
                                         <td>
-                                            <div class="d-flex gap-1 align-items-center">
-                                                <span>$</span>
+                                            <div class="d-flex gap-1 align-items-center input-div">
+                                                <span class="dollar-sign">$</span>
                                                 <input type="text"
-                                                    class="form-control only-numbers user-inp form-control-sm"
+                                                    class="form-control only-numbers green-inp user-inp form-control-sm"
                                                     id="usda_optional_extra_payments" value="100">
                                             </div>
                                         </td>
@@ -505,7 +540,7 @@
                         <div class="d-flex gap-4 align-items-center py-3">
                             <label for="usda_lender_name" class="fw-bold text-nowrap">Lender Name: </label>
                             <input type="text" name="usda_lender_name" id="usda_lender_name"
-                                class="form-control form-control-sm">
+                                class="form-control form-control-sm green-inp">
                         </div>
                     </div>
                     <div class="col-12">

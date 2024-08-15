@@ -11,4 +11,6 @@ $(document).ready(function () {
 
         $(this).val(sanitizedValue);
     });
+
+    $('.form-control:not(.green-inp)').prop('readonly', true);
 });

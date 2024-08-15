@@ -47,3 +47,27 @@ main {
 .form-control{
     text-align: center !important;
 }
+
+.input-div{
+    position: relative;
+}
+
+.dollar-sign,.percentage-sign{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.dollar-sign{
+    left: 5px;
+}
+
+.percentage-sign{
+    right: 5px;
+}
+
+select.form-control{
+    font-size: 14px !important;
+    min-width: 130px !important;
+    padding: 4px !important;
+}
