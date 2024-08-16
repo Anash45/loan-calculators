@@ -16,7 +16,7 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false){
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
             integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="./assets/css/style.css?v=1">
+        <link rel="stylesheet" href="./assets/css/style.css?v=2">
     </head>
 
     <body>
@@ -99,11 +99,11 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false){
         </main>
         <script src="./assets/js/jquery.min.js"></script>
         <script src="./assets/js/bootstrap.bundle.min.js"></script>
-        <script src="./assets/js/fha_calculator.js?v=1"></script>
-        <script src="./assets/js/conv_calculator.js?v=1"></script>
-        <script src="./assets/js/va_calculator.js?v=1"></script>
-        <script src="./assets/js/usda_calculator.js?v=1"></script>
-        <script src="./assets/js/script.js?v=1"></script>
+        <script src="./assets/js/fha_calculator.js?v=2"></script>
+        <script src="./assets/js/conv_calculator.js?v=2"></script>
+        <script src="./assets/js/va_calculator.js?v=2"></script>
+        <script src="./assets/js/usda_calculator.js?v=2"></script>
+        <script src="./assets/js/script.js?v=2"></script>
     </body>
 
 </html>

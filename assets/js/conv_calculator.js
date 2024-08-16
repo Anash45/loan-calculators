@@ -206,7 +206,7 @@ function initConvCalculations() {
     // Display the conv_est_closing_costs_inp
     $('#conv_est_closing_costs_inp').val(`${conv_est_closing_costs_inp.toFixed(2)}`);
 
-    let conv_buyer_closing_costs_inp = conv_est_closing_costs_inp + conv_seller_paid_closing_costs_inp;
+    let conv_buyer_closing_costs_inp = conv_est_closing_costs_inp - conv_seller_paid_closing_costs_inp;
     $('#conv_buyer_closing_costs_inp').val(`${conv_buyer_closing_costs_inp.toFixed(2)}`);
 
     let conv_sbac_amnt = 0;

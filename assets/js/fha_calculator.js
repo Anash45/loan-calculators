@@ -195,7 +195,7 @@ function initFHACalculations() {
     // Display the fha_est_closing_costs_inp
     $('#fha_est_closing_costs_inp').val(`${fha_est_closing_costs_inp.toFixed(2)}`);
 
-    let fha_buyer_closing_costs_inp = fha_est_closing_costs_inp + fha_seller_paid_closing_costs_inp;
+    let fha_buyer_closing_costs_inp = fha_est_closing_costs_inp - fha_seller_paid_closing_costs_inp;
     $('#fha_buyer_closing_costs_inp').val(`${fha_buyer_closing_costs_inp.toFixed(2)}`);
 
 
