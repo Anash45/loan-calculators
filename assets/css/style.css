@@ -71,7 +71,9 @@ select.form-control{
     min-width: 130px !important;
     padding: 4px !important;
 }
-
+td[colspan="2"]{
+    text-align: center;
+}
 @media print{
     *{
         font-size: 100% !important;

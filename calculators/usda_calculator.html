@@ -14,7 +14,8 @@
                             <tr>
                                 <td>Sales Price</td>
                                 <td>
-                                    <div class="d-flex gap-1 align-items-center input-div"> <span class="dollar-sign">$</span><input type="text"
+                                    <div class="d-flex gap-1 align-items-center input-div"> <span
+                                            class="dollar-sign">$</span><input type="text"
                                             class="form-control only-numbers user-inp green-inp form-control-sm"
                                             id="usda_sales_price_inp" value="10000"></div>
                                 </td>
@@ -28,14 +29,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2">
-                                    <div class="d-flex justify-content-center align-items-center percent-toggle">
-                                        <label class="form-check-inline">Dwn Pmt Amount <input type="radio"
-                                                value="amount" name="usda_dwn_pmt_amnt"></label><label
-                                            class="form-check-inline">% <input type="radio" value="percentage"
-                                                name="usda_dwn_pmt_amnt" checked></label>
-                                    </div>
-                                </td>
+                                <td colspan="2"> Dwn Pmt </td>
                                 <td>Monthly Ins</td>
                                 <td>
                                     <div class="d-flex gap-1 align-items-center input-div">
@@ -46,7 +40,14 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Dwn Pmt</td>
+                                <td>
+                                    <div class="d-flex justify-content-center align-items-center percent-toggle">
+                                        <label class="form-check-inline">$ <input type="radio" value="amount"
+                                                name="usda_dwn_pmt_amnt"></label><label class="form-check-inline">%
+                                            <input type="radio" value="percentage" name="usda_dwn_pmt_amnt"
+                                                checked></label>
+                                    </div>
+                                </td>
                                 <td>
                                     <div class="d-flex gap-1 align-items-center input-div">
                                         <input type="text"
@@ -201,17 +202,18 @@
                                 <th class="text-danger bg-light text-center">$<span
                                         id="usda_total_additional_costs"></span>
                                 </th>
-                                <td colspan="2">
-                                    <div class="d-flex justify-content-center align-items-center percent-toggle">
-                                        <label class="form-check-inline">Amount <input type="radio" value="amount"
-                                                name="usda_buyer_agent_comp_toggle"></label><label class="form-check-inline">% <input
-                                                type="radio" value="percentage" name="usda_buyer_agent_comp_toggle" checked></label>
-                                    </div>
-                                </td>
+                                <td colspan="2"> Buyer Agent Comp </td>
                             </tr>
                             <tr>
                                 <td colspan="2"></td>
-                                <td>Buyer Agent Comp</td>
+                                <td>
+                                    <div class="d-flex justify-content-center align-items-center percent-toggle">
+                                        <label class="form-check-inline">$ <input type="radio" value="amount"
+                                                name="usda_buyer_agent_comp_toggle"></label><label
+                                            class="form-check-inline">% <input type="radio" value="percentage"
+                                                name="usda_buyer_agent_comp_toggle" checked></label>
+                                    </div>
+                                </td>
                                 <td>
                                     <div class="d-flex gap-1 align-items-center input-div">
                                         <input type="text" class="form-control only-numbers green-inp form-control-sm"
@@ -221,17 +223,17 @@
                             </tr>
                             <tr>
                                 <td colspan="2"></td>
-                                <td colspan="2">
+                                <td colspan="2"> Seller BAC Offset </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
                                     <div class="d-flex justify-content-center align-items-center percent-toggle">
-                                        <label class="form-check-inline">Amount <input type="radio" value="amount"
+                                        <label class="form-check-inline">$ <input type="radio" value="amount"
                                                 name="usda_bac_toggle"></label><label class="form-check-inline">% <input
                                                 type="radio" value="percentage" name="usda_bac_toggle" checked></label>
                                     </div>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td colspan="2"></td>
-                                <td>Seller BAC Offset</td>
                                 <td>
                                     <div class="d-flex gap-1 align-items-center input-div">
                                         <input type="text" class="form-control only-numbers green-inp form-control-sm"
