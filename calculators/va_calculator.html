@@ -43,10 +43,9 @@
                             <tr>
                                 <td>
                                     <div class="d-flex justify-content-center align-items-center percent-toggle">
-                                        <label class="form-check-inline">$ <input type="radio"
-                                                value="amount" name="va_dwn_pmt_amnt"></label><label
-                                            class="form-check-inline">% <input type="radio" value="percentage"
-                                                name="va_dwn_pmt_amnt" checked></label>
+                                        <label class="form-check-inline">$ <input type="radio" value="amount"
+                                                name="va_dwn_pmt_amnt"></label><label class="form-check-inline">% <input
+                                                type="radio" value="percentage" name="va_dwn_pmt_amnt" checked></label>
                                     </div>
                                 </td>
                                 <td>
@@ -66,6 +65,36 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td>VA Base Loan Amount</td>
+                                <td>
+                                    <div class="d-flex gap-1 align-items-center input-div">
+                                        <span class="dollar-sign">$</span>
+                                        <input type="text" class="form-control only-numbers form-control-sm"
+                                            id="va_base_loan_amnt_inp">
+                                    </div>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td>VA Funding Fee %</td>
+                                <td>
+                                    <div class="d-flex gap-1 align-items-center input-div">
+                                        <input type="text" class="form-control only-numbers green-inp form-control-sm"
+                                            id="va_funding_fee" value="2.25">
+                                        <span class="percentage-sign">%</span>
+                                    </div>
+                                </td>
+                                <td class="text-danger">
+                                    <select id="va_est_ttl_pmt_type"
+                                        class="form-control form-control-sm green-inp text-danger">
+                                        <option value="Est Ttl Pmt_Escrows">Pmt_Escrows</option>
+                                        <option value="Est Ttl Pmt_No_Escrows">Pmt_No_Escrows</option>
+                                    </select>
+                                </td>
+                                <th class="text-danger bg-light text-center"> $<span id="va_est_total_pmt"></span>
+                                </th>
+                            </tr>
+                            <tr>
                                 <th class="text-danger">
                                     <select id="va_funding_fee_type_inp"
                                         class="form-control form-control-sm green-inp text-danger">
@@ -81,6 +110,7 @@
                                             id="va_funding_fee_inp">
                                     </div>
                                 </td>
+                                <td colspan="2"></td>
                             </tr>
                             <tr>
                                 <td>Loan Amount</td>
@@ -88,18 +118,10 @@
                                     <div class="d-flex gap-1 align-items-center input-div">
                                         <span class="dollar-sign">$</span>
                                         <input type="text" class="form-control only-numbers form-control-sm"
-                                            id="va_base_loan_amnt_inp">
+                                            id="va_loan_amnt_inp">
                                     </div>
                                 </td>
-                                <td class="text-danger">
-                                    <select id="va_est_ttl_pmt_type"
-                                        class="form-control form-control-sm green-inp text-danger">
-                                        <option value="Est Ttl Pmt_Escrows">Pmt_Escrows</option>
-                                        <option value="Est Ttl Pmt_No_Escrows">Pmt_No_Escrows</option>
-                                    </select>
-                                </td>
-                                <th class="text-danger bg-light text-center"> $<span id="va_est_total_pmt"></span>
-                                </th>
+                                <td colspan="2"></td>
                             </tr>
                         </tbody>
                     </table>

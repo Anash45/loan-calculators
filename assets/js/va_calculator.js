@@ -119,19 +119,28 @@ function initVACalculations() {
     let va_appraisal_gap_inp = parseFloat($('#va_appraisal_gap_inp').val()) || 0;
     let va_start_date_of_loan = $('#va_start_date_of_loan').val() || '01-01-2025';
     let va_funding_fee_type_inp = $('#va_funding_fee_type_inp').val();
+    let va_funding_fee = parseFloat($('#va_funding_fee').val()) || 0;
     let va_funding_fee_inp = 0;
 
+
+
+    // Calculations
+    let va_base_loan_amnt_inp = va_sales_price_inp - (va_sales_price_inp * (va_est_dwn_pmt_rate));
+    $('#va_base_loan_amnt_inp').val(va_base_loan_amnt_inp > 0 ? va_base_loan_amnt_inp.toFixed(2) : '');
+
+
     if (va_funding_fee_type_inp == 'Not Disabled') {
-        va_funding_fee_inp = 6000;
+        va_funding_fee_inp = va_base_loan_amnt_inp * (va_funding_fee / 100);
     } else {
         va_funding_fee_inp = 0;
     }
 
     $('#va_funding_fee_inp').val(va_funding_fee_inp);
 
-    // Calculations
-    let va_base_loan_amnt_inp = va_sales_price_inp - (va_sales_price_inp * (va_est_dwn_pmt_rate)) + va_funding_fee_inp;
-    $('#va_base_loan_amnt_inp').val(va_base_loan_amnt_inp > 0 ? va_base_loan_amnt_inp.toFixed(2) : '');
+
+
+    let va_loan_amnt_inp = va_sales_price_inp - (va_sales_price_inp * (va_est_dwn_pmt_rate)) + va_funding_fee_inp;
+    $('#va_loan_amnt_inp').val(va_loan_amnt_inp > 0 ? va_loan_amnt_inp.toFixed(2) : '');
 
     // $('#va_funding_fee_inp').val(va_funding_fee_inp > 0 ? va_funding_fee_inp.toFixed(2) : 0);
 
