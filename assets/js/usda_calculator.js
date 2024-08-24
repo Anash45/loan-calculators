@@ -117,6 +117,7 @@ function initUsdaCalculations() {
     let usda_optional_extra_payments = parseFloat($('#usda_optional_extra_payments').val()) || 0;
     let usda_seller_paid_closing_costs_inp = parseFloat($('#usda_seller_paid_closing_costs_inp').val()) || 0;
     let usda_appraisal_gap_inp = parseFloat($('#usda_appraisal_gap_inp').val()) || 0;
+    let usda_funding_fee = parseFloat($('#usda_funding_fee').val()) || 0;
     let usda_start_date_of_loan = $('#usda_start_date_of_loan').val() || '01-01-2025';
     let usda_est_ttl_pmt_type = $('#usda_est_ttl_pmt_type').val();
 
@@ -135,7 +136,7 @@ function initUsdaCalculations() {
 
     let usda_loan_amount = usda_sales_price_inp - (usda_est_dwn_pmt_rate * usda_sales_price_inp);
 
-    let usda_funding_fee_inp = usda_loan_amount * 0.01;
+    let usda_funding_fee_inp = usda_loan_amount * (usda_funding_fee / 100);
     $('#usda_funding_fee_inp').val(usda_funding_fee_inp.toFixed(2));
 
 

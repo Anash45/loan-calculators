@@ -129,7 +129,7 @@ function initVACalculations() {
     $('#va_base_loan_amnt_inp').val(va_base_loan_amnt_inp > 0 ? va_base_loan_amnt_inp.toFixed(2) : '');
 
 
-    if (va_funding_fee_type_inp == 'Not Disabled') {
+    if (va_funding_fee_type_inp == 'Funding Fee') {
         va_funding_fee_inp = va_base_loan_amnt_inp * (va_funding_fee / 100);
     } else {
         va_funding_fee_inp = 0;

@@ -83,6 +83,25 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td>USDA Funding Fee %</td>
+                                <td>
+                                    <div class="d-flex gap-1 align-items-center input-div">
+                                        <input type="text" class="form-control only-numbers green-inp form-control-sm"
+                                            id="usda_funding_fee" value="1.00">
+                                        <span class="percentage-sign">%</span>
+                                    </div>
+                                </td>
+                                <th class="text-danger">
+                                    <select id="usda_est_ttl_pmt_type"
+                                        class="form-control form-control-sm green-inp text-danger">
+                                        <option value="Est Ttl Pmt_Escrows">Pmt_Escrows</option>
+                                        <option value="Est Ttl Pmt_No_Escrows">Pmt_No_Escrows</option>
+                                    </select>
+                                </th>
+                                <th class="text-danger bg-light text-center"> $<span id="usda_est_total_pmt"></span>
+                                </th>
+                            </tr>
+                            <tr>
                                 <td>USDA Funding Fee</td>
                                 <td>
                                     <div class="d-flex gap-1 align-items-center input-div">
@@ -102,15 +121,7 @@
                                             id="usda_total_loan_amount_inp">
                                     </div>
                                 </td>
-                                <th class="text-danger">
-                                    <select id="usda_est_ttl_pmt_type"
-                                        class="form-control form-control-sm green-inp text-danger">
-                                        <option value="Est Ttl Pmt_Escrows">Pmt_Escrows</option>
-                                        <option value="Est Ttl Pmt_No_Escrows">Pmt_No_Escrows</option>
-                                    </select>
-                                </th>
-                                <th class="text-danger bg-light text-center"> $<span id="usda_est_total_pmt"></span>
-                                </th>
+                                <td colspan="2"></td>
                             </tr>
                         </tbody>
                     </table>
